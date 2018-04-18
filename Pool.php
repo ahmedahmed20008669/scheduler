@@ -5,15 +5,34 @@ class JDBCConeection{
     private Static $unlocked = array ($Connectio=>$Long);
     private static $expiretime = 30;
 
+    private Static $servername = "localhost";
+    private Static $username = "AhmedHassn";
+    private Static $password = "1234";
+
+
+public function CreateConnection()
+{
+    $con = new mysqli(self::$servername, self::$username, self::$password);
+
+    // Check connection
+    if ($con->connect_error) {
+        die("Connection failed: " . $con->connect_error);
+        $con->close();
+    }
+    else
+    {
+        return $con;
+    } 
+}
 public function expire ($con)
 {
-    $con =null;
+    $con->close();
 }
 public function validation ($con)
 {
     return (is_null($con));
 }
-public function Checkout ()
+public function CheckOut ()
 {
     $now = $Time.time();
     $t = null;
@@ -52,7 +71,7 @@ public function Checkout ()
             }
         }
     }
-    //$t = create();
+    $t = CreateConnection();
     array_push(self::$locked, $t,$now);
     //print ("create a new connection");
     return $t;
