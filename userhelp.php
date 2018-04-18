@@ -16,7 +16,7 @@ require_once($CFG->dirroot.'/mod/scheduler/lib.php');
 require_once($CFG->dirroot.'/mod/scheduler/locallib.php');
 require_once($CFG->dirroot.'/mod/scheduler/renderable.php');
 defined('MOODLE_INTERNAL') || die();
-//require_login();
+require_login();
 echo $OUTPUT->header();
 
 
